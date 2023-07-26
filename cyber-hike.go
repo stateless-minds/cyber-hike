@@ -33,6 +33,7 @@ type cyberhike struct {
 	alert string
 }
 
+// Ride is the struct holding the journey
 type Ride struct {
 	ID           string   `mapstructure:"_id" json:"_id" validate:"uuid_rfc4122"`
 	Route        string   `mapstructure:"route" json:"route" validate:"uuid_rfc4122"`
@@ -223,7 +224,7 @@ func (c *cyberhike) Render() app.UI {
 						),
 						app.Div().Class("card with-wood section-item xyz-nested").Body(
 							app.Header().Text("Sustainable"),
-							app.Text("By sharing a journey we reduce unneccessary traffic."),
+							app.Text("By sharing a journey we reduce unnecessary traffic."),
 							app.Footer().Body(app.Strong().Text("Promote sharing economy.")),
 						),
 					),
