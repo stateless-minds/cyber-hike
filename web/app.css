@@ -1,0 +1,122 @@
+.app {
+    background: rgb(34,193,195);
+    background: radial-gradient(circle, rgb(195 34 178) 0%, rgb(253 228 45) 100%);
+}
+
+.subtitle, .title {
+    color: #6f4343!important;
+}
+
+.textarea {
+    background-color: #f1f1f1!important;
+    max-width: -webkit-fill-available!important;
+}
+
+.card {
+    max-width: fit-content!important;
+}
+
+.card header {
+    margin: 0!important;
+}
+
+.card-gallery {
+    float: left!important;
+    align-items: center!important;
+    padding: 1em!important;
+    max-width: 250px!important
+}
+
+.card-gallery>.row {
+    text-align: center;
+}
+
+.card-gallery>footer {
+    text-align: center;
+}
+
+.badge {
+    border: none!important;
+    padding: 10px!important;
+}
+
+.container {
+    /* padding: 0.5em!important; */
+    border: none!important;
+}
+
+.gallery-container {
+    max-width: 1220px!important;
+}
+
+.gallery-section {
+    overflow-x: scroll;
+}
+
+.input {
+    max-width: fit-content!important;
+}
+
+#photo {
+    max-width: 60%;
+}
+
+.alert {
+    background: linear-gradient(45deg, black, transparent);
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    max-width: -webkit-fill-available!important;
+    margin: 0!important;
+    position: sticky!important;
+    top: 0;
+    z-index: 9999;
+    border-radius: 0!important;
+}
+
+
+.gallery-container {
+    position: relative;
+    width: 100vw;
+    background-color: transparent;
+    overflow: hidden;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .gallery-section {
+    overflow: hidden;
+    height: 100%;
+    animation: scrollText 10s infinite linear!important;
+    &:hover {
+        animation-play-state: paused!important;
+      }
+    margin: 0;
+    display: flex;
+    width: 250%;
+  }
+
+  span {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tags {
+    display: block!important;
+  }
+  
+  @keyframes scrollText {
+    0% {
+      transform: translate3d(var(--carousel-start), 0, 0);
+    }
+
+    100% {
+    transform: translate3d(var(--carousel-end), 0, 0); 
+    }
+  }
+
+  #seats {
+    padding-right: 35px;
+  }
