@@ -43,7 +43,7 @@ git clone https://github.com/stateless-minds/kubo.git
 ```{
   "API": {
     "HTTPHeaders": {
-      "Access-Control-Allow-Origin": ["webui://-", "http://localhost:3000", "http://k51qzi5uqu5dk32d3b06vug3radhkdh3i47vtbvzxbi2k7if8f2qahqidse46c.ipns.localhost:8080", "http://127.0.0.1:5001", "https://webui.ipfs.io"],
+      "Access-Control-Allow-Origin": ["webui://-", "http://localhost:3000", "http://k51qzi5uqu5dkn4etiu22tefi828dwrlc51hcm6kmdl8ghqsqsdddonfixhy55.ipns.localhost:8080", "http://127.0.0.1:5001", "https://webui.ipfs.io"],
       "Access-Control-Allow-Credentials": ["true"],
       "Access-Control-Allow-Methods": ["PUT", "POST"]
     }
