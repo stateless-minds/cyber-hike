@@ -6,7 +6,7 @@ toolchain go1.23.3
 
 require (
 	github.com/foolin/mixer v0.0.8
-	github.com/maxence-charriere/go-app/v9 v9.8.0
+	github.com/maxence-charriere/go-app/v10 v10.0.8
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/stateless-minds/go-ipfs-api v0.7.5
 )

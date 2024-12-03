@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/foolin/mixer"
-	"github.com/maxence-charriere/go-app/v9/pkg/app"
+	"github.com/maxence-charriere/go-app/v10/pkg/app"
 	"github.com/mitchellh/mapstructure"
 	shell "github.com/stateless-minds/go-ipfs-api"
 )
@@ -192,11 +192,11 @@ func (c *cyberhike) subscriptionUpdateRide(ctx app.Context) {
 
 func (c *cyberhike) Render() app.UI {
 	return app.Div().Class("app page-wrap xyz-in").Body(
-		app.If(len(c.alert) > 0,
-			app.Div().Class("container alert").Body(
+		app.If(len(c.alert) > 0, func() app.UI {
+			return app.Div().Class("container alert").Body(
 				app.Text(c.alert),
-			),
-		),
+			)
+		}),
 		app.Div().Class("col center-x space-y-0 pt-50 page-hero").Attr("xyz", "fade small stagger ease-out-back").Body(
 			app.H1().Class("title hero-logo xyz-nested").Text("CyberHike"),
 			app.H2().Class("subtitle hero-text xyz-nested pt-5").Text("P2P ride share matching"),
@@ -298,21 +298,24 @@ func (c *cyberhike) Render() app.UI {
 									app.Span().Body(app.Text(c.rides[i].Seats)),
 								),
 							),
-							app.If(len(c.rides[i].Participants) > 0,
+							app.If(len(c.rides[i].Participants) > 0, func() app.UI {
 								app.Range(c.rides[i].Participants).Slice(func(n int) app.UI {
 									if mixer.DecodeString(encPassword, c.rides[i].Participants[n]) == c.citizenID {
 										c.isParticipant = true
 									}
+									
 									return app.If(mixer.DecodeString(encPassword, c.rides[i].Participants[n]) == c.citizenID,
-										app.Span().Class("badge mt-30 is-success xyz-nested").Text("Confirmed"),
-									)
-								}),
-								app.If(!c.isParticipant && c.rides[i].Seats > 0,
-									app.Button().Class("button mt-30 is-success xyz-nested").Text("Join").OnClick(c.onJoinRide),
-								),
-							).Else(
-								app.Button().Class("button mt-30 is-success xyz-nested").Text("Join").OnClick(c.onJoinRide),
-							),
+										func() app.UI {
+											return app.Span().Class("badge mt-30 is-success xyz-nested").Text("Confirmed")
+									})
+								})
+
+								return app.If(!c.isParticipant && c.rides[i].Seats > 0, func() app.UI {
+									return app.Button().Class("button mt-30 is-success xyz-nested").Text("Join").OnClick(c.onJoinRide)
+								})
+							}).Else(func() app.UI {
+								return app.Button().Class("button mt-30 is-success xyz-nested").Text("Join").OnClick(c.onJoinRide)
+							}),
 						)
 					}),
 				).Style("--carousel-start", "-"+strconv.Itoa(len(c.rides)*250)+"px").Style("--carousel-end", strconv.Itoa(len(c.rides)*250)+"px"),
@@ -443,7 +446,9 @@ func (c *cyberhike) onJoinRide(ctx app.Context, e app.Event) {
 }
 
 func main() {
-	app.Route("/", &cyberhike{})
+	app.Route("/", func() app.Composer{
+		return &cyberhike{}
+	})
 	app.RunWhenOnBrowser()
 	http.Handle("/", &app.Handler{
 		Name:        "cyberhike",
